@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard — Online Crop Market</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="dashboard">
+  <div id="toast-container"></div>
+
+  <div class="dashboard-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">
+          <div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>
+          CropMarket
+        </a>
+      </div>
+      <div class="sidebar-user">
+        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=100&q=80" alt="Farmer" class="dash-user-img">
+        <div>
+          <div class="uname dash-user-name">Loading…</div>
+          <div class="urole">Farmer Seller</div>
+          <div class="ustatus"><span class="status-dot" aria-hidden="true"></span> Active</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a href="#" class="sidebar-link active"><span class="sl-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span> Dashboard</a>
+        <a href="#crops-section" class="sidebar-link"><span class="sl-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></span> My Crops <span class="sl-badge" id="sidebar-crop-count">4</span></a>
+        <a href="#orders-section" class="sidebar-link"><span class="sl-icon"><i class="fa-solid fa-box" aria-hidden="true"></i></span> Orders</a>
+        <a href="#analytics-section" class="sidebar-link"><span class="sl-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span> Analytics</a>
+        <a href="#messages-section" class="sidebar-link"><span class="sl-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></span> Messages <span class="sl-badge" id="sidebar-msg-count" style="display:none">0</span></a>
+        <div class="nav-section-label" style="margin-top:8px">Account</div>
+        <a href="#" class="sidebar-link" data-soon="Profile"><span class="sl-icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span> Profile</a>
+        <a href="products.html" class="sidebar-link"><span class="sl-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span> View Market</a>
+        <a href="#" class="sidebar-link" data-soon="Settings"><span class="sl-icon"><i class="fa-solid fa-gear" aria-hidden="true"></i></span> Settings</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-link" style="width:100%;border:none;background:none;cursor:pointer;color:rgba(255,255,255,.55)" onclick="logout()">
+          <span class="sl-icon"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i></span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <main class="dash-main">
+
+      <!-- Topbar -->
+      <div class="dash-topbar">
+        <div style="display:flex;align-items:center;gap:16px">
+          <button id="sidebar-toggle" class="hamburger" style="display:flex;background:var(--green-50);color:var(--green-700)" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+          <h1>Farmer Dashboard</h1>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <button class="theme-toggle" title="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+          <a href="products.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-store" aria-hidden="true"></i> View Store</a>
+          <button class="btn btn-primary btn-sm" id="add-crop-btn">+ Add Crop</button>
+        </div>
+      </div>
+
+      <div class="dash-content">
+
+        <!-- Banner -->
+        <div class="dash-banner fade-in">
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&q=80" alt="Farm">
+          <div class="dash-banner-overlay">
+            <h2>Good Morning, <span class="dash-user-name">Farmer</span>!</h2>
+            <p>Your farm store is live. Keep your listings fresh to attract more buyers.</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-tile fade-in">
+            <div class="st-icon green"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>
+            <div class="st-val" id="stat-total-crops">4</div>
+            <div class="st-label">Total Crop Listings</div>
+            <div class="st-change up">↑ 2 this month</div>
+          </div>
+          <div class="stat-tile fade-in">
+            <div class="st-icon gold"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div>
+            <div class="st-val" id="stat-active">4</div>
+            <div class="st-label">Active Listings</div>
+            <div class="st-change up">All live</div>
+          </div>
+          <div class="stat-tile fade-in">
+            <div class="st-icon blue"><i class="fa-solid fa-box" aria-hidden="true"></i></div>
+            <div class="st-val" id="stat-orders-month">0</div>
+            <div class="st-label">Orders This Month</div>
+            <div class="st-change up">↑ 25% vs last month</div>
+          </div>
+          <div class="stat-tile fade-in">
+            <div class="st-icon red"><i class="fa-solid fa-coins" aria-hidden="true"></i></div>
+            <div class="st-val" id="stat-sales">ZMW 0</div>
+            <div class="st-label">Total Earnings</div>
+            <div class="st-change up">↑ Growing</div>
+          </div>
+        </div>
+
+        <!-- Crops Table -->
+        <div class="dash-card fade-in" id="crops-section">
+          <div class="dash-card-header">
+            <h3 class="icon-heading"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i> My Crop Listings</h3>
+            <div style="display:flex;gap:10px">
+              <input type="text" placeholder="Search crops…" style="padding:8px 14px;border:2px solid var(--border);border-radius:100px;font-size:.83rem;background:transparent;color:var(--text-dark);outline:none;max-width:200px" id="table-search">
+              <button class="btn btn-primary btn-sm" id="add-crop-btn-2">+ Add New Crop</button>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="crops-table">
+              <thead>
+                <tr>
+                  <th>Crop</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="crops-tbody">
+                <tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text-light)">Loading your crops…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dash-card fade-in" id="orders-section" style="margin-top:24px">
+          <div class="dash-card-header">
+            <h3 class="icon-heading"><i class="fa-solid fa-box" aria-hidden="true"></i> Recent orders</h3>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="crops-table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="farmer-orders-tbody">
+                <tr><td colspan="5" style="text-align:center;padding:32px;color:var(--text-light)">Loading orders…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dash-card fade-in" id="analytics-section" style="margin-top:24px">
+          <div class="dash-card-header">
+            <h3 class="icon-heading"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Sales analytics</h3>
+          </div>
+          <div class="analytics-grid">
+            <div>
+              <p class="analytics-label">Revenue (last 6 months)</p>
+              <div id="analytics-monthly-bars" class="analytics-bars"></div>
+            </div>
+            <div>
+              <p class="analytics-label">Top crops by revenue</p>
+              <div id="analytics-top-crops"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card fade-in" id="messages-section" style="margin-top:24px">
+          <div class="dash-card-header">
+            <h3 class="icon-heading"><i class="fa-solid fa-comments" aria-hidden="true"></i> Messages from buyers</h3>
+          </div>
+          <div id="farmer-messages-list" class="messages-list"></div>
+          <form id="farmer-reply-form" class="message-reply-form" style="display:none">
+            <input type="hidden" name="recipient-id">
+            <input type="hidden" name="reply-subject">
+            <div class="form-group">
+              <label>Reply</label>
+              <textarea name="reply-body" rows="3" placeholder="Write your reply…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-paper-plane"></i> Send reply</button>
+            <button type="button" class="btn btn-outline btn-sm" id="cancel-reply-btn">Cancel</button>
+          </form>
+        </div>
+
+        <!-- Quick Links -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:8px">
+          <div class="dash-card" style="padding:24px;text-align:center;cursor:pointer" onclick="openCropModal()">
+            <div class="dash-quick-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></div>
+            <div style="font-weight:700;color:var(--text-dark);font-size:.95rem">Add New Crop</div>
+            <div style="font-size:.8rem;color:var(--text-light);margin-top:4px">List a new product for sale</div>
+          </div>
+          <div class="dash-card" style="padding:24px;text-align:center;cursor:pointer" onclick="window.location.href='products.html'">
+            <div class="dash-quick-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
+            <div style="font-weight:700;color:var(--text-dark);font-size:.95rem">View Marketplace</div>
+            <div style="font-size:.8rem;color:var(--text-light);margin-top:4px">See how your store looks</div>
+          </div>
+          <div class="dash-card" style="padding:24px;text-align:center;cursor:pointer" onclick="document.getElementById('analytics-section')?.scrollIntoView({behavior:'smooth'})">
+            <div class="dash-quick-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+            <div style="font-weight:700;color:var(--text-dark);font-size:.95rem">Sales Analytics</div>
+            <div style="font-size:.8rem;color:var(--text-light);margin-top:4px">Track your performance</div>
+          </div>
+          <div class="dash-card" style="padding:24px;text-align:center;cursor:pointer" onclick="document.getElementById('messages-section')?.scrollIntoView({behavior:'smooth'})">
+            <div class="dash-quick-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
+            <div style="font-weight:700;color:var(--text-dark);font-size:.95rem">Messages</div>
+            <div style="font-size:.8rem;color:var(--text-light);margin-top:4px">Chat with your buyers</div>
+          </div>
+        </div>
+
+      </div><!-- /dash-content -->
+    </main>
+  </div>
+
+  <!-- ── Add/Edit Crop Modal ── -->
+  <div class="modal-overlay" id="crop-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Add New Crop</h3>
+        <button class="modal-close" id="modal-close" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="crop-form">
+          <input type="hidden" name="crop-id">
+
+          <!-- Crop image upload -->
+          <div class="crop-img-upload" id="crop-img-upload">
+            <input type="file" id="crop-img-input" accept="image/*">
+            <img class="preview-img" id="crop-img-preview" src="" alt="Preview">
+            <div class="ciu-placeholder">
+              <div class="ciu-icon"><i class="fa-solid fa-image" aria-hidden="true"></i></div>
+              <p>Click to upload crop photo<br><small style="color:var(--text-light)">JPG, PNG — max 5MB</small></p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Or paste image URL</label>
+            <input type="text" name="crop-img-url" placeholder="https://images.unsplash.com/…">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Crop Name *</label>
+              <input type="text" name="crop-name" placeholder="e.g. Sweet Maize" required>
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select name="crop-cat" required>
+                <option value="">Select category</option>
+                <option value="grains">Grains</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="tubers">Tubers</option>
+                <option value="legumes">Legumes</option>
+                <option value="fruits">Fruits</option>
+                <option value="herbs">Herbs & Spices</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Price (ZMW) *</label>
+              <input type="number" name="crop-price" placeholder="e.g. 45" min="1" required>
+            </div>
+            <div class="form-group">
+              <label>Unit *</label>
+              <input type="text" name="crop-unit" placeholder="e.g. per 50kg bag" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Available Stock (units)</label>
+            <input type="number" name="crop-stock" placeholder="e.g. 100" min="0">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="crop-desc" placeholder="Describe your crop — freshness, size, how it was grown…"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="document.getElementById('crop-modal').classList.remove('open')">Cancel</button>
+        <button class="btn btn-primary" onclick="document.getElementById('crop-form').dispatchEvent(new Event('submit'))"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Save Crop</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Second add crop button
+      const btn2 = document.getElementById("add-crop-btn-2");
+      if (btn2) btn2.addEventListener("click", () => openCropModal());
+
+      // Table search
+      const ts = document.getElementById("table-search");
+      if (ts) ts.addEventListener("input", (e) => {
+        const q = e.target.value.toLowerCase();
+        document.querySelectorAll("#crops-tbody tr").forEach(row => {
+          row.style.display = row.textContent.toLowerCase().includes(q) ? "" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

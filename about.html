@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Online Crop Market</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    /* ── About Page Specific ── */
+    .about-hero {
+      margin-top: 72px;
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=80');
+      background-size: cover;
+      background-position: center 40%;
+    }
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(10,40,15,.9) 0%, rgba(10,40,15,.65) 60%, rgba(10,40,15,.4) 100%);
+    }
+    .about-hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+    /* Mission / Vision */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .mission-card {
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-card.green {
+      background: linear-gradient(135deg, var(--green-800), var(--green-900));
+      color: #fff;
+    }
+    .mission-card.light {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--text-dark);
+    }
+    [data-theme="dark"] .mission-card.light { background: #152617; border-color: #2a4a2c; }
+    .mission-card .mc-icon { font-size: 2rem; margin-bottom: 20px; color: var(--green-600); }
+    .mission-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+    .mission-card.green h3 { color: var(--gold-light); }
+    .mission-card.light h3 { color: var(--text-dark); }
+    .mission-card p  { line-height: 1.75; font-size: .95rem; }
+    .mission-card.green p { color: rgba(255,255,255,.8); }
+    .mission-card.light p { color: var(--text-mid); }
+
+    /* Story timeline */
+    .timeline { position: relative; margin-top: 56px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--green-500), var(--green-300));
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      align-items: center;
+    }
+    .timeline-item:nth-child(even) .tl-content { order: 2; }
+    .timeline-item:nth-child(even) .tl-img     { order: 1; }
+
+    .tl-content {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      position: relative;
+    }
+    [data-theme="dark"] .tl-content { background: #152617; border-color: #2a4a2c; }
+    .tl-year {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--green-600), var(--green-800));
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .tl-content h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--text-dark); }
+    .tl-content p  { font-size: .88rem; color: var(--text-mid); line-height: 1.7; }
+    .tl-dot {
+      position: absolute;
+      right: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px; height: 14px;
+      background: var(--green-500);
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 3px var(--green-300);
+      z-index: 2;
+    }
+    [data-theme="dark"] .tl-dot { border-color: #0d1f0e; }
+    .timeline-item:nth-child(even) .tl-content .tl-dot { right: auto; left: -25px; }
+    .tl-img-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 220px;
+    }
+    .tl-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      text-align: center;
+      transition: var(--transition);
+    }
+    [data-theme="dark"] .team-card { background: #152617; border-color: #2a4a2c; }
+    .team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-5px); }
+    .team-card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+    .team-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+    .team-card:hover .team-card-img img { transform: scale(1.06); }
+    .team-card-info { padding: 20px 16px; }
+    .team-card-info .tname { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--text-dark); margin-bottom: 4px; }
+    .team-card-info .trole { font-size: .8rem; color: var(--green-700); font-weight: 600; margin-bottom: 8px; }
+    [data-theme="dark"] .team-card-info .trole { color: var(--green-400); }
+    .team-card-info .tbio  { font-size: .78rem; color: var(--text-light); line-height: 1.55; }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .value-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      transition: var(--transition);
+      border-bottom: 3px solid transparent;
+    }
+    [data-theme="dark"] .value-card { background: #152617; border-color: #2a4a2c; border-bottom-color: transparent; }
+    .value-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-bottom-color: var(--green-500); }
+    .value-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .value-card h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 8px; }
+    .value-card p  { font-size: .85rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* Impact numbers */
+    .impact-section {
+      background: linear-gradient(135deg, var(--green-900), var(--green-800));
+      border-radius: var(--radius-xl);
+      padding: 64px 40px;
+      margin: 80px 0;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .impact-num {
+      text-align: center;
+      color: #fff;
+    }
+    .impact-num .in-val { font-family: var(--font-display); font-size: 2.8rem; font-weight: 800; color: var(--gold-light); display: block; }
+    .impact-num .in-label { font-size: .85rem; color: rgba(255,255,255,.7); margin-top: 4px; }
+
+    /* Partners */
+    .partners-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .partner-badge {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 28px;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      transition: var(--transition);
+    }
+    [data-theme="dark"] .partner-badge { background: #152617; border-color: #2a4a2c; }
+    .partner-badge:hover { border-color: var(--green-500); color: var(--green-700); box-shadow: var(--shadow-sm); }
+
+    /* CTA Banner */
+    .about-cta {
+      background: var(--green-50);
+      border: 2px solid var(--green-200, var(--border));
+      border-radius: var(--radius-xl);
+      padding: 64px 40px;
+      text-align: center;
+      margin: 0 0 80px;
+    }
+    [data-theme="dark"] .about-cta { background: rgba(45,168,74,.08); border-color: #2a4a2c; }
+    .about-cta h2 { margin-bottom: 12px; }
+    .about-cta p  { color: var(--text-mid); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .about-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 768px) {
+      .mission-grid { grid-template-columns: 1fr; }
+      .timeline::before { left: 24px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 16px; }
+      .timeline-item:nth-child(even) .tl-content { order: 1; }
+      .timeline-item:nth-child(even) .tl-img     { order: 2; }
+      .tl-dot, .timeline-item:nth-child(even) .tl-content .tl-dot { left: -48px; right: auto; }
+      .tl-content { margin-left: 20px; }
+      .impact-section { padding: 40px 24px; }
+      .about-cta { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body data-page="about">
+  <div id="toast-container"></div>
+
+  <!-- ── Navbar ── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>CropMarket</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="index.html#farmers-section">Farmers</a>
+        <a href="about.html" style="color:var(--gold-light)!important">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="cart-btn" title="Cart" type="button">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge" style="display:none">0</span>
+        </button>
+        <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+        <button class="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+    <a href="products.html"><i class="fa-solid fa-store" aria-hidden="true"></i> Shop Crops</a>
+    <a href="index.html#farmers-section"><i class="fa-solid fa-users" aria-hidden="true"></i> Farmers</a>
+    <a href="about.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> About</a>
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Sign In</a>
+  </div>
+
+  <!-- ── Hero ── -->
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-overlay"></div>
+    <div class="container">
+      <div class="about-hero-content">
+        <span class="section-tag" style="background:rgba(255,255,255,.15);color:var(--gold-light)">Our Story</span>
+        <h1 style="color:#fff;margin-top:12px;margin-bottom:16px">Built for Zambia's Farmers & Families</h1>
+        <p style="color:rgba(255,255,255,.8);font-size:1.1rem;line-height:1.75;margin-bottom:32px">
+          We started with a simple belief — that every Zambian farmer deserves fair prices, and every family deserves fresh, affordable food. Online Crop Market is our answer to that challenge.
+        </p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <a href="register.html" class="btn btn-gold btn-lg">Join Our Community</a>
+          <a href="#our-story" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.4);color:#fff">Read Our Story ↓</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ── Mission & Vision ── -->
+    <section class="section-pad" style="padding-bottom:48px" id="our-story">
+      <div class="text-center">
+        <span class="section-tag">Purpose</span>
+        <h2 class="section-title">Our Mission & Vision</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card green fade-in">
+          <div class="mc-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
+          <h3>Our Mission</h3>
+          <p>To empower Zambian smallholder farmers by giving them direct access to a nationwide market — eliminating middlemen, increasing income, and ensuring fresh produce reaches every household at fair prices.</p>
+        </div>
+        <div class="mission-card light fade-in">
+          <div class="mc-icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></div>
+          <h3 style="color:var(--green-700)">Our Vision</h3>
+          <p>A Zambia where no farmer struggles to sell their harvest, and no family struggles to afford nutritious, locally grown food. A fully connected agricultural ecosystem from field to fork.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Our Story Timeline ── -->
+    <section style="padding-bottom:80px">
+      <div class="text-center">
+        <span class="section-tag">Journey</span>
+        <h2 class="section-title">How We Got Here</h2>
+        <p class="section-sub center">From a small idea to Zambia's fastest-growing agri-marketplace.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item fade-in">
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <span class="tl-year">2021 — The Idea</span>
+            <h3>Born from a Real Problem</h3>
+            <p>Our founders noticed Lusaka farmers were selling maize below cost while market prices remained high. The disconnect was clear — farmers had no direct access to buyers. A digital marketplace was the obvious solution.</p>
+          </div>
+          <div class="tl-img-wrap">
+            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80" alt="Farm fields" loading="lazy">
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="tl-img-wrap">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Building" loading="lazy">
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <span class="tl-year">2022 — Launch</span>
+            <h3>We Launched with 50 Farmers</h3>
+            <p>After months of building, testing, and visiting farms across four provinces, we launched CropMarket with 50 verified farmers and 200 initial customers. Within three months, sales exceeded ZMW 250,000.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <span class="tl-year">2023 — Growth</span>
+            <h3>Expanding to All 10 Provinces</h3>
+            <p>Word spread fast. By end of 2023, we had onboarded over 800 farmers from all 10 provinces, introduced mobile money payments, and launched the farmer dashboard enabling self-service listings.</p>
+          </div>
+          <div class="tl-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80" alt="Expansion" loading="lazy">
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="tl-img-wrap">
+            <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80" alt="Community" loading="lazy">
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <span class="tl-year">2024–2026 — Today</span>
+            <h3>2,400+ Farmers & Counting</h3>
+            <p>Today, over 2,400 verified farmers use CropMarket to reach 48,000+ customers. We've facilitated over ZMW 18 million in transactions and helped farmers increase average monthly income by 62%.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Impact Numbers ── -->
+  <!-- <div class="container">
+    <div class="impact-section fade-in">
+      <div class="text-center">
+        <span class="section-tag" style="background:rgba(255,255,255,.15);color:var(--gold-light)">Our Impact</span>
+        <h2 style="color:#fff;margin-top:12px">Numbers That Matter</h2>
+        <p style="color:rgba(255,255,255,.65);margin-top:8px">Real change, measurable impact across Zambia.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-num fade-in">
+          <span class="in-val">2,400+</span>
+          <div class="in-label">Farmers Empowered</div>
+        </div>
+        <div class="impact-num fade-in">
+          <span class="in-val">48,000+</span>
+          <div class="in-label">Happy Customers</div>
+        </div>
+        <div class="impact-num fade-in">
+          <span class="in-val">ZMW 18M+</span>
+          <div class="in-label">Transactions Facilitated</div>
+        </div>
+        <div class="impact-num fade-in">
+          <span class="in-val">62%</span>
+          <div class="in-label">Avg Income Increase</div>
+        </div>
+        <div class="impact-num fade-in">
+          <span class="in-val">10</span>
+          <div class="in-label">Provinces Covered</div>
+        </div>
+        <div class="impact-num fade-in">
+          <span class="in-val">120+</span>
+          <div class="in-label">Crop Varieties</div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- ── Our Values ── -->
+  <div class="container">
+    <section style="padding-bottom:80px">
+      <div class="text-center">
+        <!-- <span class="section-tag">What Drives Us</span> -->
+        <h2 class="section-title">Our Core Values</h2>
+        <p class="section-sub center">Everything we build is guided by these principles.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <div class="value-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
+          <h3>Fairness</h3>
+          <p>We believe farmers deserve fair prices for their labour. Our platform eliminates exploitative middlemen and ensures every sale benefits the grower directly.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+          <h3>Sustainability</h3>
+          <p>We champion organic and sustainable farming practices, helping farmers adopt better techniques that protect Zambia's soils and waterways for generations to come.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+          <h3>Trust & Safety</h3>
+          <p>Every farmer is verified, every transaction is secured, and every buyer is protected by our quality guarantee. Trust is the foundation of our marketplace.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div>
+          <h3>Community</h3>
+          <p>We're not just a platform — we're a community. From farmer cooperatives to buyer groups, we help people connect, share knowledge, and grow together.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
+          <h3>Innovation</h3>
+          <p>We continuously improve our tools, listening to both farmers and buyers to build features that genuinely make agricultural commerce simpler and smarter.</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
+          <h3>Excellence</h3>
+          <p>We hold high standards across everything — produce quality, platform reliability, customer service, and farmer support. Good enough is never good enough.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── Our Team ── -->
+  <!-- <div style="background:var(--green-50);padding:80px 0">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">The People</span>
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="section-sub center">A passionate group of agri-tech professionals, farmers, and developers committed to transforming Zambia's food system.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-card-img">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="CEO" loading="lazy">
+          </div>
+          <div class="team-card-info">
+            <div class="tname">Chanda Mwansa</div>
+            <div class="trole">Chief Executive Officer</div>
+            <div class="tbio">Former agricultural economist with 10 years farming policy experience. Founded CropMarket to close Zambia's rural-urban food divide.</div>
+          </div>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-card-img">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="COO" loading="lazy">
+          </div>
+          <div class="team-card-info">
+            <div class="tname">Namukolo Phiri</div>
+            <div class="trole">Chief Operations Officer</div>
+            <div class="tbio">Logistics and supply chain expert who built CropMarket's nationwide delivery network from the ground up.</div>
+          </div>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-card-img">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="CTO" loading="lazy">
+          </div>
+          <div class="team-card-info">
+            <div class="tname">Brian Tembo</div>
+            <div class="trole">Chief Technology Officer</div>
+            <div class="tbio">Full-stack developer and agri-tech pioneer. Built the platform from a weekend project into Zambia's leading crop marketplace.</div>
+          </div>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-card-img">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80" alt="Farmer Relations" loading="lazy">
+          </div>
+          <div class="team-card-info">
+            <div class="tname">Grace Lungu</div>
+            <div class="trole">Head of Farmer Relations</div>
+            <div class="tbio">Grew up on a farm in Eastern Province. Leads our network of field agents who onboard and support farmers across all provinces.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- ── Partners ── -->
+  <!-- <div class="container">
+    <section style="padding:80px 0 40px;text-align:center">
+      <span class="section-tag">Trusted Partners</span>
+      <h2 class="section-title">Who We Work With</h2>
+      <p class="section-sub center">Partnering with government, NGOs, and private sector to scale sustainable agriculture.</p>
+      <div class="partners-row">
+        <div class="partner-badge">🏛️ Ministry of Agriculture</div>
+        <div class="partner-badge">🌍 FAO Zambia</div>
+        <div class="partner-badge">📱 Airtel Zambia</div>
+        <div class="partner-badge">🏦 ZANACO Bank</div>
+        <div class="partner-badge">🌱 COMACO</div>
+        <div class="partner-badge">🚚 Zambia Post</div>
+        <div class="partner-badge">🔬 ZARI Research</div>
+        <div class="partner-badge">💳 MTN Mobile Money</div>
+      </div>
+    </section> -->
+
+    <!-- ── CTA ── -->
+    <div class="about-cta fade-in">
+      <!-- <span class="section-tag">Get Involved</span> -->
+      <h2 class="section-title">Be Part of the Change</h2>
+      <p>Whether you grow crops or you eat food — you have a role to play in building a fairer food system for Zambia. Join us today.</p>
+      <div class="about-cta-btns">
+        <a href="register.html?type=farmer" class="btn btn-primary btn-lg"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i> Register as a Farmer</a>
+        <a href="products.html" class="btn btn-gold btn-lg"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> Start Shopping</a>
+        <!-- <a href="index.html#contact" class="btn btn-outline btn-lg">📩 Partner With Us</a> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="display:flex;margin-bottom:16px"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div> CropMarket</div>
+        <p>Connecting Zambian farmers directly with buyers. Fresh produce, fair prices, thriving communities.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a><a href="#" class="social-link" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a><a href="#" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Marketplace</h4><ul><li><a href="products.html">Shop Crops</a></li><li><a href="index.html#farmers-section">Our Farmers</a></li><li><a href="products.html?organic=1">Organic Produce</a></li></ul></div>
+      <div class="footer-col"><h4>Farmers</h4><ul><li><a href="register.html?type=farmer">Start Selling</a></li><li><a href="farmer-dashboard.html">Dashboard</a></li><li><a href="farmer-guide.html">Farmer Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="index.html#contact">Contact</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li><li><a href="help.html">Help</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Online Crop Market</span><span>Serving communities across Zambia</span></div>
+  </footer>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Crops — Online Crop Market</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="products">
+  <div id="toast-container"></div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>CropMarket</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html" style="color:var(--gold-light)!important">Shop</a>
+        <a href="index.html#farmers-section">Farmers</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="cart-btn" title="Cart" type="button">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge" style="display:none">0</span>
+        </button>
+        <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+        <button class="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+    <a href="products.html"><i class="fa-solid fa-store" aria-hidden="true"></i> Shop Crops</a>
+    <a href="cart.html"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> Cart</a>
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Sign In</a>
+  </div>
+
+  <!-- Page header banner -->
+  <div style="position:relative;height:220px;overflow:hidden;margin-top:72px">
+    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=80" alt="" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,40,15,.7),rgba(10,40,15,.6));display:flex;align-items:center">
+      <div class="container">
+        <span class="section-tag" style="background:rgba(255,255,255,.15);color:var(--gold-light)">Fresh Today</span>
+        <h1 style="color:#fff;margin-top:8px">Shop Fresh Crops</h1>
+        <p style="color:rgba(255,255,255,.75);font-size:.95rem">Direct from verified Zambian farmers</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section-pad" style="padding-top:48px">
+
+    <!-- Search & Filters -->
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:8px">
+      <div class="search-bar" style="flex:1;max-width:380px">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="text" id="crop-search" placeholder="Search crops, farmers…">
+      </div>
+      <div style="color:var(--text-light);font-size:.85rem" id="result-count"></div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all" aria-hidden="true"></i> All Crops</button>
+      <button class="filter-btn" data-filter="grains"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i> Grains</button>
+      <button class="filter-btn" data-filter="vegetables"><i class="fa-solid fa-carrot" aria-hidden="true"></i> Vegetables</button>
+      <button class="filter-btn" data-filter="tubers"><i class="fa-solid fa-box" aria-hidden="true"></i> Tubers</button>
+      <button class="filter-btn" data-filter="legumes"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i> Legumes</button>
+      <button class="filter-btn" data-filter="organic"><i class="fa-solid fa-leaf" aria-hidden="true"></i> Organic</button>
+    </div>
+
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="message-farmer-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Message farmer</h3>
+        <button type="button" class="modal-close" onclick="document.getElementById('message-farmer-modal').classList.remove('open')" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="message-farmer-form">
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" name="msg-subject" required>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="msg-body" rows="4" placeholder="Ask about availability, delivery, or bulk pricing…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal" style="max-width:680px">
+      <div class="modal-header">
+        <h3 id="detail-modal-title">Product Details</h3>
+        <button class="modal-close" onclick="document.getElementById('detail-modal').classList.remove('open')" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="product-detail-content" id="detail-modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div> CropMarket</div>
+        <p>Connecting Zambian farmers directly with buyers. Fresh produce, fair prices, and a thriving agricultural community.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Marketplace</h4>
+        <ul>
+          <li><a href="products.html">Shop Crops</a></li>
+          <li><a href="products.html?organic=1">Organic Produce</a></li>
+          <li><a href="products.html">Seasonal Deals</a></li>
+          <li><a href="index.html#contact">Bulk Orders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Farmers</h4>
+        <ul>
+          <li><a href="register.html?type=farmer">Start Selling</a></li>
+          <li><a href="farmer-dashboard.html">Dashboard</a></li>
+          <li><a href="farmer-guide.html">Farmer Guide</a></li>
+          <li><a href="farmer-guide.html#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="help.html">Help Centre</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Online Crop Market. All rights reserved.</span>
+      <span>Built for Zambian farmers</span>
+    </div>
+  </footer>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

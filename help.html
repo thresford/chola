@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Centre — Online Crop Market</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="help">
+  <div id="toast-container"></div>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>CropMarket</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme" type="button"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container legal-page">
+    <span class="section-tag">Support</span>
+    <h1 class="section-title">Help Centre</h1>
+    <p class="section-sub">Answers to common questions about buying, selling, and deliveries on CropMarket.</p>
+
+    <div class="faq-list" style="margin-top:40px">
+      <div class="faq-item open">
+        <div class="faq-q">How do I place an order? <i class="faq-icon">+</i></div>
+        <div class="faq-a">Browse <a href="products.html">Shop Crops</a>, add items to your cart, and complete checkout with Mobile Money or card.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I register as a farmer? <i class="faq-icon">+</i></div>
+        <div class="faq-a"><a href="register.html?type=farmer">Create a farmer account</a>, then use the dashboard to list crops with photos and prices.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I use the Django backend? <i class="faq-icon">+</i></div>
+        <div class="faq-a">From the <code>backend</code> folder run <code>python manage.py runserver</code>, then open <a href="http://127.0.0.1:8000/">127.0.0.1:8000</a>. Demo accounts: <strong>buyer@demo.com</strong> or <strong>farmer@demo.com</strong>, password <strong>123456</strong>.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the promo code FRESH10? <i class="faq-icon">+</i></div>
+        <div class="faq-a">Enter <strong>FRESH10</strong> on the cart page for 10% off your subtotal (demo promotion).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who do I contact for support? <i class="faq-icon">+</i></div>
+        <div class="faq-a">Email <a href="mailto:hello@onlinecropmarket.zm">hello@onlinecropmarket.zm</a> or call +260 97 123 4567, Mon–Fri 08:00–18:00 CAT.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;padding:24px">
+      <span>© 2026 Online Crop Market</span>
+      <a href="index.html">Back to Home</a>
+    </div>
+  </footer>
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

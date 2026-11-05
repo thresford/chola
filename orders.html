@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — CropMarket</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="orders">
+  <div id="toast-container"></div>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>CropMarket</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme" type="button"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="cart-btn" type="button" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span class="cart-badge">0</span></button>
+        <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container legal-page">
+    <span class="section-tag">Account</span>
+    <h1 class="section-title">My orders</h1>
+    <p class="section-sub">Orders placed while signed in with the Django API.</p>
+    <div id="customer-orders-list" style="margin-top:32px"></div>
+  </main>
+
+  <footer>
+    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;padding:24px">
+      <span>© 2026 Online Crop Market</span>
+    </div>
+  </footer>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

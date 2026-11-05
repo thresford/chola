@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart — Online Crop Market</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cart">
+  <div id="toast-container"></div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>CropMarket</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="cart-btn" title="Cart" type="button">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge" style="display:none">0</span>
+        </button>
+        <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="cart-layout">
+
+      <!-- Cart Items -->
+      <div>
+        <h2 class="icon-heading" style="margin-bottom:8px"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> Your Cart</h2>
+        <p style="color:var(--text-light);font-size:.88rem;margin-bottom:24px">Review your items before checkout</p>
+
+        <!-- Empty state -->
+        <div class="empty-cart" id="empty-cart" style="display:none">
+          <div class="ec-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
+          <h3>Your cart is empty</h3>
+          <p style="margin-bottom:24px">Add some fresh crops from our marketplace to get started.</p>
+          <a href="products.html" class="btn btn-primary">Browse Crops →</a>
+        </div>
+
+        <!-- Cart items list -->
+        <div id="cart-items"></div>
+
+        <!-- Continue shopping -->
+        <div style="margin-top:16px;display:none" id="cart-continue-shopping">
+          <a href="products.html" class="btn btn-outline">← Continue Shopping</a>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div id="cart-order-panel">
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-line"><span>Subtotal</span><span class="cart-subtotal">ZMW 0</span></div>
+          <div class="summary-line hidden-line"><span>Promo (FRESH10)</span><span class="cart-discount">—</span></div>
+          <div class="summary-line"><span>Delivery Fee</span><span class="cart-delivery">ZMW 25</span></div>
+          <div class="summary-line"><span>Platform Fee (5%)</span><span class="cart-fee">—</span></div>
+          <div class="summary-total">
+            <span>Total</span>
+            <span class="cart-total">ZMW 0</span>
+          </div>
+          <a href="checkout.html" id="cart-checkout-link" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:24px;padding:16px">
+            Proceed to Checkout →
+          </a>
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:.78rem;color:var(--text-light)">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i> Secure checkout · Mobile Money · Card
+          </div>
+        </div>
+
+        <!-- Promo code -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-top:16px">
+          <p style="font-size:.88rem;font-weight:600;color:var(--text-dark);margin-bottom:12px"><i class="fa-solid fa-tag" aria-hidden="true"></i> Have a promo code?</p>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="promo-code-input" placeholder="Try FRESH10" style="flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:100px;outline:none;background:var(--off-white);color:var(--text-dark);font-size:.85rem">
+            <button type="button" class="btn btn-outline btn-sm" id="promo-apply-btn">Apply</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;padding:24px">
+      <span>© 2026 Online Crop Market</span>
+      <a href="products.html" style="color:var(--green-400)">← Back to Shop</a>
+    </div>
+  </footer>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

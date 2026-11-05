@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Crop Market — Fresh from Zambian Farms</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    /* BANNER IMAGE ADDED - Zambian farm landscape */
+    .hero-bg {
+      background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80') !important;
+      background-size: cover !important;
+      background-position: center 35% !important;
+      background-repeat: no-repeat !important;
+    }
+  </style>
+</head>
+<body data-page="home">
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- ── Navbar ── -->
+  <!-- ── Navbar ── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>
+        CropMarket
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="#farmers-section">Farmers</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="cart-btn" title="Cart" type="button">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge" style="display:none">0</span>
+        </button>
+        <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
+        <button class="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu">
+    <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+    <a href="products.html"><i class="fa-solid fa-store" aria-hidden="true"></i> Shop Crops</a>
+    <a href="#farmers-section"><i class="fa-solid fa-users" aria-hidden="true"></i> Farmers</a>
+    <a href="#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a>
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Sign In</a>
+    <a href="register.html"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Register</a>
+  </div>
+
+  <!-- ── Hero with BANNER IMAGE ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <!-- <div class="hero-badge">🌿 Zambia's #1 Farm Marketplace</div> -->
+        <h1>
+          Fresh Crops,
+          <span>Direct from the Farm.</span>
+        </h1>
+        <p class="hero-sub">
+          Connect with local farmers across Zambia. Buy fresh, organic produce at fair prices — or sell your harvest to thousands of customers nationwide.
+        </p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn btn-gold btn-lg"> Shop Now</a>
+          <a href="register.html?type=farmer" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.4);color:#fff"> Start Selling</a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="hero-stats">
+      <div class="container">
+        <div class="stat-card">
+          <div class="num counter" data-target="2400" data-suffix="+">0</div>
+          <div class="label">Active Farmers</div>
+        </div>
+        <div class="stat-card">
+          <div class="num counter" data-target="48000" data-suffix="+">0</div>
+          <div class="label">Happy Customers</div>
+        </div>
+        <div class="stat-card">
+          <div class="num counter" data-target="120" data-suffix="+">0</div>
+          <div class="label">Crop Varieties</div>
+        </div>
+        <div class="stat-card">
+          <div class="num counter" data-target="10" data-suffix=" Provinces">0</div>
+          <div class="label">Nationwide Coverage</div>
+        </div>
+      </div>
+    </div> -->
+  </section>
+
+  <!-- ── Why CropMarket ── -->
+  <section class="section-pad" id="about">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Why Choose Us</span>
+        <h2 class="section-title">A Smarter Way to Buy & Sell Crops</h2>
+        <p class="section-sub center">We're building Zambia's most trusted agri-commerce platform, connecting farmers directly with buyers for fair deals on both sides.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon"><i class="fa-solid fa-tractor" aria-hidden="true"></i></div>
+          <h3>Farm to Table</h3>
+          <p>Buy directly from verified farmers with no middlemen, ensuring maximum freshness and fair pricing for everyone.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div>
+          <h3>Verified Farmers</h3>
+          <p>Every farmer on our platform is verified. Shop with confidence knowing your food comes from trusted, quality-checked sources.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
+          <h3>Fast Delivery</h3>
+          <p>Orders fulfilled within 24–48 hours across Lusaka and major towns. Track your delivery in real time.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></div>
+          <h3>Easy Payments</h3>
+          <p>Pay via Mobile Money (Airtel, MTN, Zamtel), or credit card. Secure, fast, and hassle-free.</p>
+        </div>
+        <!-- <div class="feature-card fade-in">
+          <div class="feature-icon">📊</div>
+          <h3>Farmer Dashboard</h3>
+          <p>Farmers get a full-featured dashboard to list crops, track sales, and manage their online store easily.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🌿</div>
+          <h3>Organic Options</h3>
+          <p>Filter for certified organic produce. Support sustainable farming practices and better nutrition choices.</p>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Featured Products ── -->
+  <section class="section-pad products-section">
+    <div class="container">
+      <div class="products-header">
+        <div>
+          <span class="section-tag">Fresh Today</span>
+          <h2 class="section-title">Featured Crops</h2>
+        </div>
+        <a href="products.html" class="btn btn-outline">View All Crops →</a>
+      </div>
+      <div class="products-grid" id="featured-products"></div>
+    </div>
+  </section>
+
+  <!-- ── Become a Farmer Seller ── -->
+  <section class="section-pad farmer-section" id="farmers-section">
+    <div class="container">
+      <div class="farmer-grid">
+        <div class="farmer-text">
+          <span class="section-tag">For Farmers</span>
+          <h2>Sell Your Harvest Online. Reach More Buyers.</h2>
+          <p>Join thousands of Zambian farmers already earning more by selling directly online. No tech skills required — just sign up and start listing your crops in minutes.</p>
+          <div class="farmer-steps">
+            <div class="farmer-step">
+              <div class="step-num">1</div>
+              <div class="step-info">
+                <h4>Create Your Farmer Account</h4>
+                <p>Register for free in under 2 minutes. No fees, no paperwork.</p>
+              </div>
+            </div>
+            <div class="farmer-step">
+              <div class="step-num">2</div>
+              <div class="step-info">
+                <h4>List Your Crops with Photos</h4>
+                <p>Add your crops, set your prices, and upload clear photos.</p>
+              </div>
+            </div>
+            <div class="farmer-step">
+              <div class="step-num">3</div>
+              <div class="step-info">
+                <h4>Get Orders & Get Paid</h4>
+                <p>Buyers find you, place orders, and you receive payment directly.</p>
+              </div>
+            </div>
+          </div>
+          <a href="register.html?type=farmer" class="btn btn-gold btn-lg"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i> Become a Farmer Seller</a>
+        </div>
+        <div class="farmer-img-wrap">
+          <img src="https://images.unsplash.com/photo-1595435742656-5272d0b3fa82?w=800&q=80" alt="Farmer with harvest" loading="lazy">
+          <!-- <div class="farmer-img-badge">
+             <div class="badge-icon">💰</div>
+            <div>
+              <div class="badge-num">ZMW 12,500</div>
+              <div class="badge-text">Avg. monthly farmer earnings</div>
+            </div> 
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Featured Farmers ── -->
+  <section class="section-pad featured-farmers">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Our Community</span>
+        <h2 class="section-title">Meet Our Top Farmers</h2>
+        <p class="section-sub center">Hardworking farmers from across Zambia powering your kitchen.</p>
+      </div>
+      <div class="farmers-grid" id="farmers-grid"></div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ── -->
+  <!-- <section class="section-pad" style="background:var(--white)">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Real Stories</span>
+        <h2 class="section-title">What People Are Saying</h2>
+      </div>
+      <div class="testimonials-grid" id="testimonials-grid"></div>
+    </div>
+  </section> -->
+
+  <!-- ── Banner CTA ── -->
+  <section style="position:relative;overflow:hidden;padding:0">
+    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=80" alt="Farm banner" style="width:100%;height:380px;object-fit:cover;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,40,15,.85),rgba(10,40,15,.4));display:flex;align-items:center">
+      <div class="container">
+        <h2 style="color:#fff;margin-bottom:12px;max-width:560px">Ready to get the freshest produce delivered to your door?</h2>
+        <p style="color:rgba(255,255,255,.75);margin-bottom:28px;max-width:480px">Browse over 120 crop varieties from verified Zambian farmers today.</p>
+        <a href="products.html" class="btn btn-gold btn-lg">Browse All Crops →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <!-- <section class="section-pad">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">How do I place an order? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Browse our products page, add items to your cart, and proceed to checkout. You can pay via Mobile Money or card. Your order will be confirmed via SMS or email.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Are the farmers verified? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Yes! Every farmer on Online Crop Market goes through a verification process. We confirm farm location, identity, and produce quality before any listing goes live.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How long does delivery take? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Delivery within Lusaka takes 24–48 hours. For other towns and provinces, delivery typically takes 2–4 business days. You can track your order from your account dashboard.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do farmers get paid? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Farmers receive payment directly to their mobile money accounts (Airtel, MTN, Zamtel) within 24 hours of a successful order delivery. No delays, no middlemen.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I return produce if quality is unsatisfactory? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Yes. We have a quality guarantee policy. If produce does not meet the described quality, contact us within 24 hours of delivery for a full refund or replacement.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is it free to join as a farmer? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Absolutely free to register and list your crops. We only charge a small 5% commission on completed sales — only when you earn, we earn.</div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ── Newsletter ── -->
+  <!-- <section class="newsletter">
+    <div class="container">
+      <h2>Stay in the Loop 🌿</h2>
+      <p>Get weekly updates on fresh arrivals, seasonal produce, farmer spotlights, and exclusive deals.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </section> -->
+
+  <!-- ── Contact ── -->
+  <section class="section-pad" id="contact">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>We'd love to hear from you</h3>
+          <p>Whether you're a farmer ready to sell, a buyer with questions — our team is ready to help.</p>
+          <div class="contact-items">
+            <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div> Lusaka, Zambia</div>
+            <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></div> +260 97 123 4567</div>
+            <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div> hello@onlinecropmarket.zm</div>
+            <div class="contact-item"><div class="ci-icon"><i class="fa-solid fa-clock" aria-hidden="true"></i></div> Mon – Fri: 08:00 – 18:00 CAT</div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" placeholder="John Banda"></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="john@email.com"></div>
+          </div>
+          <div class="form-group"><label>Subject</label><input type="text" placeholder="How can we help?"></div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Tell us more..."></textarea></div>
+          <button type="button" class="btn btn-primary" style="width:100%">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div> CropMarket</div>
+        <p>Connecting Zambian farmers directly with buyers. Fresh produce, fair prices, and a thriving agricultural community.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Marketplace</h4>
+        <ul>
+          <li><a href="products.html">Shop Crops</a></li>
+          <li><a href="products.html?organic=1">Organic Produce</a></li>
+          <li><a href="products.html">Seasonal Deals</a></li>
+          <li><a href="index.html#contact">Bulk Orders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Farmers</h4>
+        <ul>
+          <li><a href="register.html?type=farmer">Start Selling</a></li>
+          <li><a href="farmer-dashboard.html">Dashboard</a></li>
+          <li><a href="farmer-guide.html">Farmer Guide</a></li>
+          <li><a href="farmer-guide.html#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="help.html">Help Centre</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Online Crop Market. All rights reserved.</span>
+      <span>Built for Zambian farmers</span>
+    </div>
+  </footer>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

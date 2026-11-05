@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Online Crop Market</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="checkout">
+  <div id="toast-container"></div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i></div>CropMarket</a>
+      <div class="nav-links">
+        <a href="cart.html">← Back to Cart</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" title="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button class="cart-btn" title="Cart" type="button">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="checkout-layout">
+
+      <!-- Left: Forms -->
+      <div>
+        <!-- Delivery Address -->
+        <div class="checkout-card">
+          <h3 class="icon-heading"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Delivery Address</h3>
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Banda"></div>
+          </div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+260 97 123 4567"></div>
+          <div class="form-group">
+            <label>Province</label>
+            <select>
+              <option>Lusaka Province</option>
+              <option>Copperbelt Province</option>
+              <option>Central Province</option>
+              <option>Eastern Province</option>
+              <option>Northern Province</option>
+              <option>Southern Province</option>
+              <option>Western Province</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Town / City</label><input type="text" placeholder="Lusaka"></div>
+            <div class="form-group"><label>Area / Compound</label><input type="text" placeholder="Northmead"></div>
+          </div>
+          <div class="form-group"><label>Street / Plot Number</label><input type="text" placeholder="Plot 123, Main Road"></div>
+          <div class="form-group">
+            <label>Delivery Instructions (optional)</label>
+            <textarea placeholder="e.g. Leave at the gate, call on arrival…" style="min-height:80px"></textarea>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="checkout-card">
+          <h3 class="icon-heading"><i class="fa-solid fa-credit-card" aria-hidden="true"></i> Payment Method</h3>
+
+          <div class="payment-tabs">
+            <div class="payment-tab active" data-method="mobile">
+              <div class="pt-icon"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i></div>
+              Mobile Money
+            </div>
+            <div class="payment-tab" data-method="card">
+              <div class="pt-icon"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></div>
+              Credit / Debit Card
+            </div>
+            <div class="payment-tab" data-method="cod">
+              <div class="pt-icon"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></div>
+              Cash on Delivery
+            </div>
+          </div>
+
+          <!-- Mobile Money -->
+          <div class="payment-form active" id="form-mobile">
+            <div class="form-group">
+              <label>Mobile Network</label>
+              <select>
+                <option>Airtel Money</option>
+                <option>MTN Mobile Money</option>
+                <option>Zamtel Kwacha</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="+260 97 000 0000">
+            </div>
+            <div style="background:var(--green-50);border:1px solid var(--green-200,var(--green-300));border-radius:var(--radius-sm);padding:14px 16px;font-size:.83rem;color:var(--green-700);margin-top:4px">
+              <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> After placing your order, you will receive a payment prompt on your phone. Enter your PIN to complete the payment.
+            </div>
+          </div>
+
+          <!-- Card Payment -->
+          <div class="payment-form" id="form-card">
+            <div class="form-group"><label>Card Number</label><input type="text" placeholder="1234 5678 9012 3456" maxlength="19"></div>
+            <div class="form-group"><label>Cardholder Name</label><input type="text" placeholder="JOHN BANDA"></div>
+            <div class="form-row">
+              <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM/YY" maxlength="5"></div>
+              <div class="form-group"><label>CVV</label><input type="text" placeholder="123" maxlength="4"></div>
+            </div>
+            <div style="background:#dbeafe;border-radius:var(--radius-sm);padding:12px 16px;font-size:.82rem;color:#1d4ed8;margin-top:4px">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i> Your card details are encrypted and never stored on our servers.
+            </div>
+          </div>
+
+          <!-- Cash on Delivery -->
+          <div class="payment-form" id="form-cod">
+            <div style="text-align:center;padding:24px;color:var(--text-mid)">
+              <div class="dash-quick-icon" style="font-size:2.5rem"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></div>
+              <p style="font-size:.9rem;line-height:1.6">Pay with cash when your order is delivered. Our delivery agent will collect payment at your door.</p>
+              <p style="font-size:.8rem;color:var(--text-light);margin-top:8px">Available for Lusaka deliveries only.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Place Order -->
+        <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="placeOrder()">
+          <i class="fa-solid fa-check" aria-hidden="true"></i> Place Order
+        </button>
+        <p style="text-align:center;font-size:.78rem;color:var(--text-light);margin-top:12px">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i> Secure 256-bit SSL encryption · By placing this order you agree to our Terms
+        </p>
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div>
+        <div class="checkout-card" style="position:sticky;top:96px">
+          <h3 class="icon-heading"><i class="fa-solid fa-box" aria-hidden="true"></i> Order Summary</h3>
+          <div id="order-items" style="margin-bottom:20px"></div>
+          <div class="summary-line"><span>Subtotal</span><span class="order-subtotal">ZMW 0</span></div>
+          <div class="summary-line hidden-line"><span>Promo (FRESH10)</span><span class="order-discount">—</span></div>
+          <div class="summary-line"><span>Delivery</span><span class="order-delivery">ZMW 25</span></div>
+          <div class="summary-line"><span>Platform Fee (5%)</span><span class="order-fee">—</span></div>
+          <div class="summary-total" style="margin-top:16px">
+            <span>Total</span>
+            <span class="order-total">ZMW 0</span>
+          </div>
+
+          <div style="margin-top:20px;padding:14px;background:var(--green-50);border-radius:var(--radius-md);font-size:.8rem;color:var(--text-mid)">
+            <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> <strong>Estimated Delivery:</strong> 24–48 hours for Lusaka<br>
+            <i class="fa-solid fa-leaf" aria-hidden="true"></i> <strong>Quality Guaranteed</strong> or full refund
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Order Success Modal ── -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal" style="max-width:480px">
+      <div class="modal-body">
+        <div class="success-modal">
+          <div class="success-check"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div>
+          <h3>Order Placed Successfully!</h3>
+          <p>Thank you for your order. Your fresh produce is on its way!</p>
+          <div class="order-number" id="order-id">OCM-000000</div>
+          <p style="font-size:.82rem;color:var(--text-light)">You will receive a confirmation SMS on your registered phone number.</p>
+          <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap">
+            <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+            <a href="index.html" class="btn btn-outline">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-bottom" style="max-width:1200px;margin:0 auto;padding:24px">
+      <span>© 2026 Online Crop Market</span>
+      <span><i class="fa-solid fa-lock" aria-hidden="true"></i> Secure Checkout</span>
+    </div>
+  </footer>
+
+  <script src="api-client.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
